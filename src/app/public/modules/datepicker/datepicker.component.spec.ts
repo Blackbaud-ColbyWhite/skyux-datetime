@@ -346,6 +346,30 @@ describe('datepicker', () => {
           .toEqual(moment('1994-11-05T08:15:30-05:00', 'YYYY-MM-DDThh:mm:ss.sssZ').toDate());
       }));
 
+      it('should handle input change with non-date input', fakeAsync(() => {
+        fixture.detectChanges();
+        tick();
+        fixture.detectChanges();
+        const junkInput = '["hip","hop"] (hip hop array!)';
+        setInput(nativeElement, junkInput, fixture);
+
+        expect(nativeElement.querySelector('input').value).toBe(junkInput);
+
+        expect(component.selectedDate).toEqual(junkInput);
+      }));
+
+      it('should handle input change with non-date input that contains a number', fakeAsync(() => {
+        fixture.detectChanges();
+        tick();
+        fixture.detectChanges();
+        const junkInputWithNumber = 'There are 10 types of people in this world - those who understand binary and those who don’t.';
+        setInput(nativeElement, junkInputWithNumber, fixture);
+
+        expect(nativeElement.querySelector('input').value).toBe(junkInputWithNumber);
+
+        expect(component.selectedDate).toEqual(junkInputWithNumber);
+      }));
+
       it('should handle two digit years', fakeAsync(() => {
         fixture.detectChanges();
         tick();

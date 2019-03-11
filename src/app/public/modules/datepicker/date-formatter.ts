@@ -15,6 +15,15 @@ export class SkyDateFormatter {
     return momentValue.toDate();
   }
 
+  public getDateFromUnknownString(dateString: string): Date {
+    const momentValue = moment(dateString);
+
+    if (!momentValue.isValid()) {
+      return new Date(NaN);
+    }
+    return momentValue.toDate();
+  }
+
   public dateIsValid(date: Date): boolean {
     return !!date && !isNaN(date.valueOf());
   }
