@@ -37,3 +37,7 @@ BrowserStackLocal
 *.ngsummary.json
 yarn.lock
 package-lock.json
+
+# IDE files
+.idea/
+
